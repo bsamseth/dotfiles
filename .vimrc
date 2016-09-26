@@ -50,9 +50,8 @@ set shiftwidth=4  " 1 tab == 4 spaces.
 set tabstop=4     " 1 tab == 4 spaces.
 set autoindent  " Auto indent newline
 set smartindent  " Do smart indent of new line
-set laststatus=2
-" Format the status line
-set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
+set laststatus=2  " Always have a status line 
+set complete+=kspell  " Auto complete from dictionary when spell check is on.
 
 "----------------------------------------
 " GENERAL MAPPINGS
