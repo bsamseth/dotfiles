@@ -66,7 +66,7 @@ map <leader><cr> :noh<cr>
 " List open buffers and promt for number or filename.
 nnoremap gb :buffers<CR>:b<Space>
 " Emacs style kill buffer
-nnoremap <c-x><c-k> :buffers<CR>:bdelete<Space>
+nnoremap <leader>db :buffers<CR>:bdelete<Space>
 " Switch CWD to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 " Visual mode pressing * or # searches for the current selection
@@ -75,7 +75,9 @@ vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 " Toggle paste mode on and off.
 map <leader>pp :setlocal paste!<cr>
 " Quickly open a markdown buffer for scribble
-map <leader>x :e ~/buffer.md<cr>
+map <leader>q :e ~/buffer.md<cr>
+" Toggle NERDTree
+map <leader>nn :NERDTreeToggle<cr>
 
 "---------------------------------------- 
 " Spell Checking
