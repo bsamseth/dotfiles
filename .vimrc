@@ -45,6 +45,7 @@ set magic  " Enable regular expressions.
 set showmatch  " Highlight matching brackets when over one.
 set encoding=utf8  " UTF-8 as standard encoding.
 set nobackup  " Don't make a backup file (rely on git).
+set noswapfile  " Don't create swp files.
 set expandtab  " Use spaces, not tabs.
 set smarttab  " Sensible tab handling.
 set shiftwidth=4  " 1 tab == 4 spaces.
