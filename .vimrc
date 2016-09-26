@@ -97,7 +97,9 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-"---------------------------------------- 
+" Auto delete trailing white space on save for some filetypes.
+autocmd FileType c,cpp,java,python autocmd BufWritePre <buffer> :%s/\s\+$//e
+
 "----------------------------------------
 " Airline Status Bar
 "----------------------------------------
