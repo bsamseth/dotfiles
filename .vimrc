@@ -98,7 +98,13 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 "---------------------------------------- 
+"----------------------------------------
+" Airline Status Bar
+"----------------------------------------
+let g:airline_powerline_fonts = 1  " Needed to fix special symbols.
+
+"----------------------------------------
 " PYTHON
-"---------------------------------------- 
-" Enable running python script with 
+"----------------------------------------
+" Enable running python script with
 autocmd FileType python nnoremap <buffer> <F9> :exec '!clear && python3' shellescape(@%, 1)<cr>
