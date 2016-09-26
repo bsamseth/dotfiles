@@ -16,6 +16,7 @@ Plug 'scrooloose/syntastic'
 Plug 'vim-airline/vim-airline'
 Plug 'sjl/badwolf'
 Plug 'junegunn/goyo.vim', { 'for': 'markdown' }
+Plug 'mhinz/vim-startify'
 
 call plug#end()
 
