@@ -85,7 +85,9 @@ map <leader>nn :NERDTreeToggle<cr>
 "----------------------------------------
 " Spell Checking
 "----------------------------------------
-map <leader>ss :setlocal spell!<cr>
+map <leader>ss :setlocal spell!<cr>  " Quick on/off spell check.
+autocmd FileType gitcommit setlocal spell  " Spell check commits.
+au BufRead *.md setlocal spell  " Spell check markdown.
 
 "----------------------------------------
 " Syntax Checking (Syntastic defaults)
