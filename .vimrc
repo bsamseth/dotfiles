@@ -17,6 +17,12 @@ Plug 'vim-airline/vim-airline'
 Plug 'sjl/badwolf'
 Plug 'junegunn/goyo.vim', { 'for': 'markdown' }
 Plug 'mhinz/vim-startify'
+Plug 'Valloric/YouCompleteMe'
+Plug 'ervandew/supertab'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'vim-scripts/jcommenter.vim', { 'for': 'java' }
+
 
 call plug#end()
 
@@ -54,6 +60,7 @@ set autoindent  " Auto indent newline
 set smartindent  " Do smart indent of new line
 set laststatus=2  " Always have a status line 
 set complete+=kspell  " Auto complete from dictionary when spell check is on.
+let g:tex_flavor = "latex"  " Use LaTeX, not plaintex.
 
 "----------------------------------------
 " GENERAL MAPPINGS
@@ -81,6 +88,28 @@ map <leader>pp :setlocal paste!<cr>
 map <leader>q :e ~/buffer.md<cr>
 " Toggle NERDTree
 map <leader>nn :NERDTreeToggle<cr>
+
+
+
+"----------------------------------------
+" Completion
+"----------------------------------------
+"" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" Set Ultisnip directory.
+let g:UltiSnipsSnippetsDir = "~/.vim/plugged/ultisnips/UltiSnips"
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+" :UltiSnipsEdit to split the window.
+let g:UltiSnipsEditSplit="vertical"
+
+" Make Python 3 sematic completion work based on enviroment.
+let g:ycm_python_binary_path = 'python3'
 
 "----------------------------------------
 " Spell Checking
