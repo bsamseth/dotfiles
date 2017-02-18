@@ -61,12 +61,13 @@ set smartindent  " Do smart indent of new line
 set laststatus=2  " Always have a status line 
 set complete+=kspell  " Auto complete from dictionary when spell check is on.
 let g:tex_flavor = "latex"  " Use LaTeX, not plaintex.
+set clipboard=unnamed  " Needed to fix copy-paste propperly with tmux.
 
 "----------------------------------------
 " GENERAL MAPPINGS
 "----------------------------------------
-" Typing jk in insert mode will exit to normal mode
-inoremap jk <esc>
+" Typing jk in insert mode will exit to normal mode and save.
+inoremap jk <esc>:w<cr>
 " Remap VIM 0 to first non-blank character
 map 0 ^
 " Search using space.
@@ -82,13 +83,16 @@ map <leader>cd :cd %:p:h<cr>:pwd<cr>
 " Visual mode pressing * or # searches for the current selection
 vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
 vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
-" Toggle paste mode on and off.
-map <leader>pp :setlocal paste!<cr>
 " Quickly open a markdown buffer for scribble
 map <leader>q :e ~/buffer.md<cr>
 " Toggle NERDTree
 map <leader>nn :NERDTreeToggle<cr>
 
+" Yank text to the OS X clipboard
+noremap <leader>y "*y
+noremap <leader>yy "*Y
+" Preserve indentation while pasting text from the OS X clipboard
+noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
 
 
 "----------------------------------------
@@ -129,6 +133,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_python_python_exec = '/usr/bin/env python3'
 
 " Auto delete trailing white space on save for some filetypes.
 autocmd FileType c,cpp,java,python autocmd BufWritePre <buffer> :%s/\s\+$//e
