@@ -8,4 +8,4 @@ as possible, keeping all settings from one system to another.
 ## Install
 
 Certain dotfiles depend on some things to be installed at seperate places.
-The [install](install) script aims to handle all the necessary things.
+The [install.sh](install.sh) script aims to handle all the necessary things.
