@@ -2,7 +2,7 @@
 
 ./bootstrap.sh  # Move all dotfiles into $HOME.
 
-BREWED="aircrack-ng ant homebrew/science/armadillo aspell homebrew/boneyard/clang-omp cmatrix paulp/extras/coursier cowsay crunch exiftool figlet fortune gcc ghc ghostscript gnupg gnupg2 grep gsl ifstat imagemagick ispell lcov libsass macvim homebrew/science/matplotlib mit-scheme multimarkdown node open-mpi perl pypy3 python python3 qcachegrind rainbarf reattach-to-user-namespace reaver rmtrash ruby scipy stockfish homebrew/science/superlu43 tmux trash tree uncrustify utf8proc valgrind vim watch wget zeromq zsh zsh-completions zsh-syntax-highlighting"
+BREWED="aircrack-ng ant homebrew/science/armadillo aspell homebrew/boneyard/clang-omp cmatrix paulp/extras/coursier cowsay crunch exiftool figlet fortune gcc ghc ghostscript gnupg gnupg2 grep gsl ifstat imagemagick ispell lcov libsass macvim homebrew/science/matplotlib mit-scheme multimarkdown node open-mpi perl pypy3 python python3 qcachegrind rainbarf reattach-to-user-namespace reaver rmtrash ruby scipy stockfish homebrew/science/superlu43 tmux trash tree uncrustify utf8proc valgrind vim watch wget zeromq zsh zsh-completions zsh-syntax-highlighting neovim/neovim/neovim"
 
 
 if [[ $OSTYPE == darwin* ]]; then
