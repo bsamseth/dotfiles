@@ -90,3 +90,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 source ~/.aliases
+
+
+# Insult me when I type something wrong: github.com/hkbakke/bash-insulter
+source /etc/bash.command-not-found

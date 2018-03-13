@@ -28,3 +28,8 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 # Tmux powerline
 git clone https://github.com/bsamseth/tmux-powerline.git
 mv tmux-powerline ~/.tmux-powerline
+
+
+# Bash insulter
+sudo wget -O /etc/bash.command-not-found https://raw.githubusercontent.com/hkbakke/bash-insulter/master/src/bash.command-not-found
+
