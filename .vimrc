@@ -11,7 +11,7 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'vim-scripts/mru.vim'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic', { 'for': 'java' }
 Plug 'vim-airline/vim-airline'
 Plug 'sjl/badwolf'
 Plug 'Valloric/YouCompleteMe'
