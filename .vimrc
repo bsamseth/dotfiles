@@ -118,6 +118,8 @@ let g:ycm_python_binary_path = 'python3'
 map <leader>ss :setlocal spell!<cr>  " Quick on/off spell check.
 autocmd FileType gitcommit setlocal spell  " Spell check commits.
 au BufRead *.md setlocal spell  " Spell check markdown.
+hi clear SpellBad
+hi SpellBad cterm=underline
 
 "----------------------------------------
 " Syntax Checking (Syntastic defaults)
