@@ -96,3 +96,7 @@ source ~/.extra
 
 # Insult me when I type something wrong: github.com/hkbakke/bash-insulter
 source /etc/bash.command-not-found
+
+# Make environment variables CC and CXX correspond to whatever gcc and g++ are.
+export CC=gcc
+export CXX=g++
