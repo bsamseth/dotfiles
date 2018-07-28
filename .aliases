@@ -10,3 +10,10 @@ alias nosetests='/usr/local/bin/nosetests-3.4'
 alias makelatex='latexmk -quiet -bibtex -pvc -f -pdf -pdflatex="pdflatex -synctex=1 -interaction=nonstopmode"'
 alias show='tree -L 2'
 alias ccat='pygmentize -g'
+
+git_add_to_last_commit() {
+    git add $1
+    git commit --amend $2
+}
+
+alias gatl='git_add_to_last_commit'
