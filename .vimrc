@@ -19,6 +19,7 @@ Plug 'ervandew/supertab'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'vim-scripts/jcommenter.vim', { 'for': 'java' }
+Plug 'ambv/black', { 'for': 'python' }
 
 
 call plug#end()
