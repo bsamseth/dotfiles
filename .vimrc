@@ -20,6 +20,9 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'vim-scripts/jcommenter.vim', { 'for': 'java' }
 Plug 'ambv/black', { 'for': 'python' }
+Plug 'tpope/vim-dispatch'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'vim-scripts/a.vim'
 
 
 call plug#end()
@@ -73,7 +76,7 @@ map <space> /
 " Disable highlight on <leader><cr>
 map <leader><cr> :noh<cr>
 " List open buffers and promt for number or filename.
-nnoremap gb :buffers<CR>:b<Space>
+nnoremap gb :CtrlPBuffer<CR>
 " Emacs style kill buffer
 nnoremap <leader>db :buffers<CR>:bdelete<Space>
 " Switch CWD to the directory of the open buffer
@@ -92,6 +95,9 @@ noremap <leader>yy "*Y
 " Preserve indentation while pasting text from the OS X clipboard
 noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
 
+" Use CtrlP with Ctrl-P
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
 
 "----------------------------------------
 " Completion
@@ -111,7 +117,8 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:UltiSnipsEditSplit="vertical"
 
 " Make Python 3 sematic completion work based on enviroment.
-let g:ycm_python_binary_path = 'python3'
+let g:ycm_python_binary_path = 'python'
+let g:ycm_extra_conf_globlist = [ '~/drive/uio/master/thesis/*' ]
 
 "----------------------------------------
 " Spell Checking
@@ -119,6 +126,7 @@ let g:ycm_python_binary_path = 'python3'
 map <leader>ss :setlocal spell!<cr>  " Quick on/off spell check.
 autocmd FileType gitcommit setlocal spell  " Spell check commits.
 au BufRead *.md setlocal spell  " Spell check markdown.
+au BufRead *.tex setlocal spell  " Spell check latex.
 hi clear SpellBad
 hi SpellBad cterm=underline
 
