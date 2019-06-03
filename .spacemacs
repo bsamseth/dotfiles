@@ -324,6 +324,10 @@ you should place your code here."
   (setq-default evil-escape-delay 0.5)
   (add-hook 'evil-insert-state-exit-hook 'save-buffer)
 
+  ;; Treat _ as part of a word (Vim style word definitions) (For all programming modes):
+  (add-hook 'prog-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
+  
+
 
   ;; Fix blank lines in a org mode buffer: https://github.com/alphapapa/unpackaged.el#ensure-blank-lines-between-headings-and-before-contents
   (defun org-fix-blank-lines (prefix)
