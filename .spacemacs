@@ -328,12 +328,14 @@ you should place your code here."
 
   (spacemacs/toggle-smartparens-globally-off)
 
-
   ;; enable ansi colors in compile-mode
   (defun colorize-compilation-buffer ()
     (when (eq major-mode 'compilation-mode)
       (ansi-color-apply-on-region compilation-filter-start (point-max))))
   (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
+
+  ;; Treat _ as part of a word (Vim style word definitions) (For all programming modes):
+  (add-hook 'prog-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
 
   ;; Fix blank lines in a org mode buffer: https://github.com/alphapapa/unpackaged.el#ensure-blank-lines-between-headings-and-before-contents
   (defun org-fix-blank-lines (prefix)
