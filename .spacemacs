@@ -31,6 +31,7 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     csv
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -42,6 +43,7 @@ values."
      emacs-lisp
      git
      github
+     gnus
      gtags
      helm
      html
@@ -324,6 +326,14 @@ you should place your code here."
   (setq-default evil-escape-delay 0.5)
   (add-hook 'evil-insert-state-exit-hook 'save-buffer)
 
+  (spacemacs/toggle-smartparens-globally-off)
+
+
+  ;; enable ansi colors in compile-mode
+  (defun colorize-compilation-buffer ()
+    (when (eq major-mode 'compilation-mode)
+      (ansi-color-apply-on-region compilation-filter-start (point-max))))
+  (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
   ;; Fix blank lines in a org mode buffer: https://github.com/alphapapa/unpackaged.el#ensure-blank-lines-between-headings-and-before-contents
   (defun org-fix-blank-lines (prefix)
@@ -359,6 +369,120 @@ exist after each headings's drawers."
                            nil
                          'tree)))
 
+  ;; Get email, and store in nnml
+  (setq gnus-secondary-select-methods
+        '(
+          (nnimap "gmail"
+                  (nnimap-address
+                   "imap.gmail.com")
+                  (nnimap-server-port 993)
+                  (nnimap-stream ssl))
+          ))
+
+  ;; Send email via Gmail:
+  (setq message-send-mail-function 'smtpmail-send-it
+        smtpmail-default-smtp-server "smtp.gmail.com")
+
+  ;; Archive outgoing email in Sent folder on imap.gmail.com:
+  (setq gnus-message-archive-method '(nnimap "imap.gmail.com")
+        gnus-message-archive-group "[Gmail]/Sent e-post")
+
+  ;; set return email address based on incoming email address
+  (setq gnus-posting-styles
+        '(((header "to" "address@outlook.com")
+           (address "address@outlook.com"))
+          ((header "to" "address@gmail.com")
+           (address "address@gmail.com"))))
+
+  ;; store email in ~/gmail directory
+  (setq nnml-directory "~/gmail")
+  (setq message-directory "~/gmail")
+
+
+
+  ;; Bind clang-format-buffer to tab on the c++-mode only:
+  (add-hook 'c++-mode-hook 'clang-format-bindings)
+  (defun clang-format-bindings ()
+    (define-key c++-mode-map [tab] 'clang-format-buffer))
+
+  (c-add-style "custom"
+              '("gnu"
+                (c-basic-offset . 4)     ; Guessed value
+                (c-offsets-alist
+                  (access-label . +)      ; Guessed value
+                  (block-close . 0)       ; Guessed value
+                  (brace-list-close . 0)  ; Guessed value
+                  (brace-list-intro . +)  ; Guessed value
+                  (brace-list-open . 0)   ; Guessed value
+                  (class-close . 0)       ; Guessed value
+                  (class-open . 0)        ; Guessed value
+                  (defun-block-intro . +) ; Guessed value
+                  (else-clause . 0)       ; Guessed value
+                  (inclass . +)           ; Guessed value
+                  (inline-close . 0)      ; Guessed value
+                  (innamespace . 0)       ; Guessed value
+                  (namespace-close . 0)   ; Guessed value
+                  (namespace-open . 0)    ; Guessed value
+                  (statement-block-intro . +) ; Guessed value
+                  (substatement-open . 0)     ; Guessed value
+                  (topmost-intro . 0)         ; Guessed value
+                  (annotation-top-cont . 0)
+                  (annotation-var-cont . +)
+                  (arglist-close . c-lineup-close-paren)
+                  (arglist-cont c-lineup-gcc-asm-reg 0)
+                  (arglist-cont-nonempty . c-lineup-arglist)
+                  (arglist-intro . c-lineup-arglist-intro-after-paren)
+                  (block-open . 0)
+                  (brace-entry-open . 0)
+                  (brace-list-entry . c-lineup-under-anchor)
+                  (c . c-lineup-C-comments)
+                  (case-label . 0)
+                  (catch-clause . 0)
+                  (comment-intro . c-lineup-comment)
+                  (composition-close . 0)
+                  (composition-open . 0)
+                  (cpp-define-intro c-lineup-cpp-define +)
+                  (cpp-macro . -1000)
+                  (cpp-macro-cont . +)
+                  (defun-close . 0)
+                  (defun-open . 0)
+                  (do-while-closure . 0)
+                  (extern-lang-close . 0)
+                  (extern-lang-open . 0)
+                  (friend . 0)
+                  (func-decl-cont . +)
+                  (incomposition . +)
+                  (inexpr-class . +)
+                  (inexpr-statement . +)
+                  (inextern-lang . +)
+                  (inher-cont . c-lineup-multi-inher)
+                  (inher-intro . +)
+                  (inlambda . c-lineup-inexpr-block)
+                  (inline-open . 0)
+                  (inmodule . +)
+                  (knr-argdecl . 0)
+                  (knr-argdecl-intro . 5)
+                  (label . 0)
+                  (lambda-intro-cont . +)
+                  (member-init-cont . c-lineup-multi-inher)
+                  (member-init-intro . +)
+                  (module-close . 0)
+                  (module-open . 0)
+                  (objc-method-args-cont . c-lineup-ObjC-method-args)
+                  (objc-method-call-cont c-lineup-ObjC-method-call-colons c-lineup-ObjC-method-call +)
+                  (objc-method-intro .
+                                    [0])
+                  (statement . 0)
+                  (statement-case-intro . +)
+                  (statement-case-open . +)
+                  (statement-cont . +)
+                  (stream-op . c-lineup-streamop)
+                  (string . -1000)
+                  (substatement . +)
+                  (substatement-label . 0)
+                  (template-args-cont c-lineup-template-args +)
+                  (topmost-intro-cont first c-lineup-topmost-intro-cont c-lineup-gnu-DEFUN-intro-cont))))
+
 
   )
 
@@ -381,7 +505,7 @@ exist after each headings's drawers."
    (quote
     ("fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" default)))
  '(evil-want-Y-yank-to-eol nil)
- '(fci-rule-color "#073642")
+ '(fci-rule-color "#073642" t)
  '(flycheck-color-mode-line-face-to-color (quote mode-line-buffer-id))
  '(frame-background-mode (quote dark))
  '(highlight-changes-colors (quote ("#d33682" "#6c71c4")))
@@ -421,7 +545,7 @@ exist after each headings's drawers."
 First introduced %t" :empty-lines 1))))
  '(package-selected-packages
    (quote
-    (ranger ein skewer-mode polymode deferred websocket js2-mode simple-httpd magit-gh-pulls github-search github-clone github-browse-file gist gh marshal logito pcache ht zenburn-theme zen-and-art-theme white-sand-theme underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme seti-theme reverse-theme rebecca-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme organic-green-theme omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme monokai-theme monochrome-theme molokai-theme moe-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme light-soap-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme heroku-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gandalf-theme flatui-theme flatland-theme farmhouse-theme exotica-theme espresso-theme dracula-theme django-theme darktooth-theme autothemer darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes afternoon-theme yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional helm-pydoc cython-mode company-anaconda anaconda-mode pythonic helm-gtags ggtags ox-twbs ox-gfm disaster company-c-headers cmake-mode clang-format web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data company-auctex auctex-latexmk auctex xterm-color smeargle shell-pop orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download multi-term mmm-mode markdown-toc markdown-mode magit-gitflow magit-popup htmlize helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck evil-magit magit transient git-commit with-editor eshell-z eshell-prompt-extras esh-help diff-hl company-statistics company auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
+    (csv-mode ranger ein skewer-mode polymode deferred websocket js2-mode simple-httpd magit-gh-pulls github-search github-clone github-browse-file gist gh marshal logito pcache ht zenburn-theme zen-and-art-theme white-sand-theme underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme seti-theme reverse-theme rebecca-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme organic-green-theme omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme monokai-theme monochrome-theme molokai-theme moe-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme light-soap-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme heroku-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gandalf-theme flatui-theme flatland-theme farmhouse-theme exotica-theme espresso-theme dracula-theme django-theme darktooth-theme autothemer darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes afternoon-theme yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional helm-pydoc cython-mode company-anaconda anaconda-mode pythonic helm-gtags ggtags ox-twbs ox-gfm disaster company-c-headers cmake-mode clang-format web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data company-auctex auctex-latexmk auctex xterm-color smeargle shell-pop orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download multi-term mmm-mode markdown-toc markdown-mode magit-gitflow magit-popup htmlize helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck evil-magit magit transient git-commit with-editor eshell-z eshell-prompt-extras esh-help diff-hl company-statistics company auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
  '(pos-tip-background-color "#073642")
  '(pos-tip-foreground-color "#93a1a1")
  '(reftex-default-bibliography
