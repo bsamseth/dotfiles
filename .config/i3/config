@@ -97,8 +97,8 @@ set $ws4 "4:"
 set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9:"
+set $ws8 "8:"
+set $ws9 "9:"
 set $ws10 "10:"
 
 # switch to workspace
@@ -131,16 +131,19 @@ workspace $ws1 output $monitor
 workspace $ws2 output $monitor
 workspace $ws3 output $monitor
 workspace $ws4 output $monitor
+workspace $ws8 output $builtindisp
 workspace $ws9 output $builtindisp
 workspace $ws10 output $builtindisp
 assign [class="Slack"] $ws10
 assign [class="Emacs"] $ws3
 assign [class="jetbrains-pycharm-ce"] $ws4
+assign [class="Spotify"] $ws9
 
 exec compton
 exec slack
 exec emacs
 exec pycharm-community
+exec --no-startup-id i3-msg 'workspace $ws9; exec sleep 3 && spotify && sleep 5'
 exec --no-startup-id i3-msg 'workspace $ws2; exec i3-sensible-terminal'
 exec --no-startup-id i3-msg 'workspace $ws10; exec sleep 3 && chromium https://calendar.google.com/calendar/b/1/r && sleep 5'
 
