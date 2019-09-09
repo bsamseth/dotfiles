@@ -126,7 +126,7 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
 set $builtindisp "eDP-1-1"
-set $monitor "DP-1"
+set $monitor $builtindisp
 workspace $ws1 output $monitor
 workspace $ws10 output $builtindisp
 assign [class="Slack"] $ws10
@@ -213,7 +213,7 @@ exec_always feh --bg-scale /usr/share/backgrounds/Disco_Dingo_Alt_Default_by_Abu
 bindsym $mod+shift+x exec ~/.config/i3/lock.sh
 
 # Multimonitor, display port monitor on left, built in right.
-exec_always xrandr --output HDMI-1-1 --off --output eDP-1-1 --mode 1920x1080 --pos 1920x112 --rotate normal --output DP-1 --primary --mode 1920x1200 --pos 0x0 --rotate normal --output HDMI-0 --off --output DP-1-1 --off --output DP-0 --off
+exec_always xrandr --output HDMI-1-1 --off --output eDP-1-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output DP-1 --off --output HDMI-0 --off --output DP-1-1 --off --output DP-0 --off
 
 # Clipboard manager
 exec --no-startup-id clipit
