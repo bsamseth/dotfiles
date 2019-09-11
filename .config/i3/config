@@ -191,7 +191,7 @@ bar {
         font pango:Source Code Pro for Powerline, Font Awesome 5 Free 10
         # status_command i3blocks -c ~/.config/i3/i3blocks.config
         position bottom
-        status_command ~/.config/bumblebee-status/bumblebee-status -m spotify github weather bluetooth layout amixer datetime battery -p date.left-click="gsimplecal" datetime.format="%a, %b %d %Y %H:%M" weather.location="Oslo" github.token="fb94da544f5c2701e9b2caf6ff76449a73a1304d" -t iceberg-rainbow
+        status_command ~/.config/bumblebee-status/bumblebee-status -m spotify github weather bluetooth layout amixer datetime battery -p date.left-click="gsimplecal" datetime.format="%a, %b %d %Y %H:%M" weather.location="Oslo" github.token="$(cat ~/.github-notification-token)" -t iceberg-rainbow
 }
 # bar {
 #         font pango:Source Code Pro for Powerline, Font Awesome 5 Free 10
