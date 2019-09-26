@@ -38,6 +38,9 @@ bindsym $mod+Shift+q kill
 # start rofi (a program launcher)
 bindsym $mod+d exec rofi -show drun -show-icons
 
+# Alt-tab between workspaces.
+bindsym $mod+Tab workspace back_and_forth
+
 # change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -156,6 +159,8 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 # Update monitor setup.
 bindsym $mod+Shift+m exec ~/.config/i3/toggle-monitor.sh
+
+bindsym $mod+Shift+y exec --no-startup-id i3-msg 'exec chromium https://www.yr.no/sted/Norge/Oslo/Oslo/Oslo/time_for_time.html'
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
