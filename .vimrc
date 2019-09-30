@@ -14,6 +14,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'scrooloose/syntastic', { 'for': 'java' }
 Plug 'vim-airline/vim-airline'
 Plug 'sjl/badwolf'
+Plug 'arcticicestudio/nord-vim'
 Plug 'Valloric/YouCompleteMe'
 Plug 'ervandew/supertab'
 Plug 'SirVer/ultisnips'
@@ -32,7 +33,8 @@ call plug#end()
 " SET OPTIONS
 "----------------------------------------
 syntax enable  " use syntax highlight.
-colorscheme badwolf  " Use badwolf scheme (installed by Plug)
+" colorscheme badwolf  " Use badwolf scheme (installed by Plug)
+colorscheme nord
 filetype plugin indent on  " filetype detection, indent rules etc.
 set number  " Setting [relative]number gives nice combo.
 set relativenumber
@@ -156,3 +158,7 @@ let g:airline_powerline_fonts = 1  " Needed to fix special symbols.
 "----------------------------------------
 " Enable running python script with
 autocmd FileType python nnoremap <buffer> <F9> :exec '!clear && python3' shellescape(@%, 1)<cr>
+
+
+set t_Co=256                         " Enable 256 colors
+set termguicolors                    " Enable GUI colors for the terminal to get truecolor
