@@ -100,3 +100,22 @@ source /etc/bash.command-not-found
 # Make environment variables CC and CXX correspond to whatever gcc and g++ are.
 export CC=gcc
 export CXX=g++
+
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
+
+prompt_end() {
+  if [[ -n $CURRENT_BG ]]; then
+      print -n "%{%k%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR"
+  else
+      print -n "%{%k%}"
+  fi
+
+  print -n "%{%f%}"
+  CURRENT_BG=''
+
+  # Add a new line and ➜ as the start character if the promt has less than 50
+  # characters left to the edge.
+
+  # PROMT_END=$'%-50(l::\n➜ )'
+  print -n $'%-50(l::\n➜ )'
+}
