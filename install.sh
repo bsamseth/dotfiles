@@ -18,5 +18,8 @@ git clone https://github.com/bsamseth/tmux-powerline.git
 mv tmux-powerline ~/.tmux-powerline
 
 # Bash insulter
-sudo wget -O /etc/bash.command-not-found https://raw.githubusercontent.com/hkbakke/bash-insulter/master/src/bash.command-not-found
+sudo cp bash.command-not-found /etc/bash.command-not-found
+
+echo "For command insults to work properly"
+echo "do:  sudo apt install lolcat cowsay"
 
