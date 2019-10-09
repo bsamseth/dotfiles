@@ -343,10 +343,10 @@
     if (( $1 )); then
       # Styling for up-to-date Git status.
       local       meta='%f'     # default foreground
-      local      clean='%150F'   # green foreground
-      local   modified='%222F'  # yellow foreground
-      local  untracked='%110F'   # blue foreground
-      local conflicted='%131F'  # red foreground
+      local      clean='%2F'   # green foreground
+      local   modified='%3F'  # yellow foreground
+      local  untracked='%4F'   # blue foreground
+      local conflicted='%1F'  # red foreground
       local    loading='%244F'  # grey foreground
     else
       # Styling for incomplete and stale Git status.
@@ -526,12 +526,12 @@
 
   ##################################[ context: user@hostname ]##################################
   # Default context color.
-  typeset -g POWERLEVEL9K_CONTEXT_FOREGROUND=180
+  typeset -g POWERLEVEL9K_CONTEXT_FOREGROUND=3
   # Default context format: %n is username, %m is hostname.
   typeset -g POWERLEVEL9K_CONTEXT_TEMPLATE='%n%250F at %180F%m'
 
   # Context color when running with privileges.
-  typeset -g POWERLEVEL9K_CONTEXT_ROOT_FOREGROUND=178
+  typeset -g POWERLEVEL9K_CONTEXT_ROOT_FOREGROUND=9
   # Context format when running with privileges: bold user@hostname.
   typeset -g POWERLEVEL9K_CONTEXT_ROOT_TEMPLATE='%n%250F at %227F%m'
 
@@ -546,7 +546,7 @@
 
   ###[ virtualenv: python virtual environment (https://docs.python.org/3/library/venv.html) ]###
   # Python virtual environment color.
-  typeset -g POWERLEVEL9K_VIRTUALENV_FOREGROUND=37
+  typeset -g POWERLEVEL9K_VIRTUALENV_FOREGROUND=6
   # Don't show Python version next to the virtual environment name.
   typeset -g POWERLEVEL9K_VIRTUALENV_SHOW_PYTHON_VERSION=false
   # Separate environment name from Python version only with a space.
@@ -556,7 +556,7 @@
 
   #####################[ anaconda: conda environment (https://conda.io/) ]######################
   # Anaconda environment color.
-  typeset -g POWERLEVEL9K_ANACONDA_FOREGROUND=37
+  typeset -g POWERLEVEL9K_ANACONDA_FOREGROUND=6
   # Don't show Python version next to the anaconda environment name.
   typeset -g POWERLEVEL9K_ANACONDA_SHOW_PYTHON_VERSION=false
   # Separate environment name from Python version only with a space.
@@ -566,7 +566,7 @@
 
   ################[ pyenv: python environment (https://github.com/pyenv/pyenv) ]################
   # Pyenv color.
-  typeset -g POWERLEVEL9K_PYENV_FOREGROUND=37
+  typeset -g POWERLEVEL9K_PYENV_FOREGROUND=6
   # Don't show the current Python version if it's the same as global.
   typeset -g POWERLEVEL9K_PYENV_PROMPT_ALWAYS_SHOW=false
   # Custom icon.
