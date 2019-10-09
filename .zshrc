@@ -12,7 +12,8 @@ export ZSH=~/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="agnoster"
+# ZSH_THEME="agnoster"
+ZSH_THEME=powerlevel10k/powerlevel10k
 DEFAULT_USER="bendik"
 
 # Uncomment the following line to use case-sensitive completion.
@@ -103,19 +104,27 @@ export CXX=g++
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
 
-prompt_end() {
-  if [[ -n $CURRENT_BG ]]; then
-      print -n "%{%k%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR"
-  else
-      print -n "%{%k%}"
-  fi
+# Fluid one-line/two-line prompt for agnoster
+# prompt_end() {
+#   if [[ -n $CURRENT_BG ]]; then
+#       print -n "%{%k%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR"
+#   else
+#       print -n "%{%k%}"
+#   fi
 
-  print -n "%{%f%}"
-  CURRENT_BG=''
+#   print -n "%{%f%}"
+#   CURRENT_BG=''
 
-  # Add a new line and ➜ as the start character if the promt has less than 50
-  # characters left to the edge.
+#   # Add a new line and ➜ as the start character if the promt has less than 50
+#   # characters left to the edge.
 
-  # PROMT_END=$'%-50(l::\n➜ )'
-  print -n $'%-50(l::\n➜ )'
-}
+#   # PROMT_END=$'%-50(l::\n➜ )'
+#   print -n $'%-50(l::\n➜ )'
+# }
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+
+# Nord dircolors (ls, tree etc.)
+test -r ~/.dir_colors && eval $(dircolors ~/.dir_colors)
+
