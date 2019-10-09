@@ -17,3 +17,10 @@ git_add_to_last_commit() {
 }
 
 alias gatl='git_add_to_last_commit'
+
+
+emacsclient_wrapper() {
+    nohup emacsclient -c -a "" $@ > /dev/null 2>&1 &
+}
+alias e='emacsclient_wrapper'
+alias sudo='sudo '
